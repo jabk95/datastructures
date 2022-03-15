@@ -5,11 +5,6 @@ from pq import PQ
 import random
 import timeit
 import pandas
-# Programming Assignment 3
-# (5) After doing steps 1 through 4 below (look for relevant comments), return up here.
-#     Given the output of step 4, how do the 2 versions of Dijkstra's algorithm compare?
-#     How does graph density affect performance?  Does size of the graph otherwise affect performance?
-#     Any other observations?
 
 
 
@@ -23,16 +18,7 @@ def generate_random_weighted_digraph(v,e,min_w,max_w) :
     max_w - maximum weight
     """
 
-    # Programming Assignment 3
-    # (1) Implement this function, which should:
-    #    -- Generate a random weighted directed graph with v vertices and e different edges.
-    #    -- Start by generating a list of random edges (assume vertices numbered from 0 to v-1).
-    #       In this list, each edge is a 2-tuple, e.g., (2, 3) is an edge from vertex 2 to vertex 3.
-    #    -- Next, generate a list, the same length, of random weights, with minW and maxW specifying the
-    #       range of weights.
-    #    -- Then construct a Digraph object passing your lists above as parameters.  The Digraph class extends
-    #       Graph so actually has the same __init__ parameters as its parent class.
-    #    -- return that Digraph object
+
     ver = v-1
     edges = []
     edge_set = set()
@@ -61,30 +47,7 @@ def generate_random_weighted_digraph(v,e,min_w,max_w) :
 def time_shortest_path_algs() :
     """Generates a table of timing results comparing two versions of Dijkstra's algorithm."""
 
-    # Programming Assignment 3
-    #
-    # (4) Make sure you find steps 2 and 3 later in this module (laster in this file in the Digraph class) then
-    #     return up here to finish assignment.
-    #     Implement the following function to do the following:
-    #     -- Use your function from step (1) generate a random weighted directed graph with 16 vertices and 240 edges
-    #        (i.e., completely connected--all possible directed edges) and weights random in interval 1 to 10 inclusive.
-    #     -- Read documentation of timeit (https://docs.python.org/3/library/timeit.html)
-    #     -- Use timeit to time both versions of Dijkstra that you implemented in steps 2 and 3 on this graph.  The number parameter
-    #        to timeit controls how many times the thing you're timing is called.  To get meaningful times, you will need to experiment with this
-    #        a bit.  E.g., increase it if the times are too small.  Use the same value of number for timing both algorithms.
-    #     -- Now repeat this for a digraph with 64 vertices and 4032 edges.
-    #     -- Now repeat this for a digraph with 256 vertices and 65280 edges.
-    #     -- Now repeat for 16 vertices and 60 edges.
-    #     -- Now repeat for 64 vertices and 672 edges.
-    #     -- Now repeat for 256 vertices and 8160 edges.
-    #     -- Repeat this again for 16 vertices and 32 edges.
-    #     -- Repeat yet again with 64 vertices and 128 edges.
-    #     -- Repeat yet again with 256 vertices and 512 edges.
-    #
-    #     -- Have this function output the timing data in a table, with columns for number of vertices, number of edges, and time.
-    #     -- If you want, you can include larger digraphs.  The pattern I used when indicating what size to use: Dense graphs: v, e=v*(v-1),
-    #        Sparse: v, e=2*v, and Something in the middle: v, e=v*(v-1)/lg V.
-
+   
 
     from __main__ import generate_random_weighted_digraph
     values = [
@@ -329,16 +292,7 @@ class Digraph(Graph) :
     def dijkstras_version_1(self,s) :
         """Dijkstra's Algorithm using a simple list as the PQ."""
 
-        # Programming Assignment 3:
-        # 2) Implement Dijkstra's Algorithm using a simple list as the "priority queue" as described in paragraph
-        #    that starts at bottom of page 661 and continues on 662 (also described in class).
-        #
-        #    Have this method return a list of 3-tuples, one for each vertex, such that first position is vertex id,
-        #    second is distance from source vertex (i.e., what pseudocode from textbook refers to as v.d), and third
-        #    is the vertex's parent (what the textbook refers to as v.pi).  E.g., (2, 10, 5) would mean the shortest path
-        #    from s to 2 has weight 10, and vertex 2's parent is vertex 5.
-        #
-        #    the parameter s is the source vertex.
+        
 
         def extract_min(self, s):
             min = math.inf
@@ -378,16 +332,7 @@ class Digraph(Graph) :
     def dijkstras_version_2(self,s) :
         """Dijkstra's Algorithm using a binary heap as the PQ."""
 
-        # Programming Assignment 3:
-        # 3) Implement Dijkstra's Algorithm using a binary heap implementation of a PQ as the PQ.
-        #    Specifically, use the implementation I have posted here: https://github.com/cicirello/PythonDataStructuresLibrary
-        #    Use the download link (if you simply click pq.py Github will just show you the source in a web browser with line numbers).
-        #
-        #    Have this method return a list of 3-tuples, one for each vertex, such that first position is vertex id,
-        #    second is distance from source vertex (i.e., what pseudocode from textbook refers to as v.d), and third
-        #    is the vertex's parent (what the textbook refers to as v.pi).  E.g., (2, 10, 5) would mean the shortest path
-        #    from s to 2 has weight 10, and vertex 2's parent is vertex 5.
-        #
+       
         #    the parameter s is the source vertex.
         parent = [ None for x in self._adj]
 
@@ -415,23 +360,7 @@ class Digraph(Graph) :
 
 
     def dijkstras_version_3(self,s) :
-        # Programming Assignment 3:
-        # EXTRA CREDIT 6: Make sure you do all required parts, assignment steps 1 to 5, before
-        # even considering doing this optional extra credit part.
-        #
-        # Implement Dijkstra's Algorithm using a fibonacci heap implementation of a PQ as the PQ.
-        # To do this, you must first implement a fibonacci heap (see the textbook chapter on fibonacci
-        # heaps, Chapter 19).  You are not allowed to use an existing fibonacci heap class found from
-        # the internet.  If you do the extra credit, you must implement your own.  Put your fibonacci heap class
-        # in a separate .py file and make sure you include it with your homework submission.
-        # Your dijkstras algorithm implementation here that uses it should have the same return
-        # type as the previous two versions from steps 2 and 3 of the assignment.
-        # If you do the extra credit portion, then modify your step 4 to include this version in the
-        # timing results.
-        #
-        # This is worth very substantial extra credit if you do it, and if you do it correctly.  Implementing
-        # the fibonacci heap is at least as hard (probably harder) than the first 3 programming assignments
-        # combined.
+       
         pass
 
 
