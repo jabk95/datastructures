@@ -169,22 +169,7 @@ class Digraph(Graph) :
         return top
 
 
-        #       Homework Hints/Suggestions/Etc:
-        #           1) Textbook indicates to use a Linked List.  Python doesn't have
-        #               one in the standard library.  Instead, use a deque (don't simply use
-        #               a python list since adding at the front is O(N) for a python list,
-        #               while it is O(1) for a deque).
-        #           2) From the pseudocode, you will be tempted to (a) call DFS, and then (b) sort
-        #               vertices by the finishing times.  However, don't do that since the sort will
-        #               cost O(V lg V) unnecessarily.
-        #           3) So, how do you do it without sorting?
-        #               A) Option A: Start by copying and pasting DFS code to start of topologicalSort, and
-        #                   where finishing time is set, add the vertex index to front of list.
-        #               B) Option B: Add an optional parameter to DFS method that is a
-        #                   function that is called upon finishing a vertex.
-        #                   Give it a default that does nothing (i.e., just a pass). Your topologicalSort would then
-        #                   call DFS passing a function that adds the vertex index to the front of a list.
-        #               C) Option C: any other way you can come up with that doesn't change what DFS currently does logically
+        
 
 
 
@@ -252,20 +237,7 @@ class Digraph(Graph) :
 
          # Remove this pass statement after you implement this method.  Simply here temporarily.
 
-        #       Homework Hints/Suggestions/Etc: See algorithm on page 617.
-        #           1) Take a look at steps 1 and 2 before you do anything.  Notice that Step 1 computes finishing times with DFS,
-        #               and step 3 uses vertices in order of decreasing finishing times.  As in the topological sort, don't actually sort
-        #               by finishing time (to avoid O(V lg v) step).  However, this is easier than in the topological sort as you already
-        #               have a method that will get you what you need.  For step 1 of algorithm you can simply call your topological sort.
-        #               That will give you the vertices in decreasing order by finishing time, which is really the intention of line 1.
-        #           2) Line 2 is just the transpose and you implemented a method to compute this above.
-        #           3) The DFS in line 3 can be done in a couple ways.  As above, if you change DFS, make sure it will still function in the basic
-        #               version.  The simplest way to do that would be to leave it alone, and just start by copying and pasting the code.
-        #               You'll need to then alter it to have the outer loop use the vertex ordering obtained from algorithm line 1 (to implement line 3).
-        #               And to do line 4, you'll need to further alter it to generate the list of lists for the return value.
-
-
-
+       
 
 class _AdjacencyList :
 
@@ -321,8 +293,7 @@ class _AdjListIter :
 
 
 if __name__ == "__main__" :
-    # here is where you will implement any code necessary to confirm that your
-    # topological sort, transpose, and strongly connected components methods work correctly.
+
     # Code in this if block will only run if you run this module, and not if you load this module with
     # an import for use by another module.
 
